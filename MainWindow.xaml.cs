@@ -14,6 +14,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace vrorayashertva
 {
@@ -26,9 +27,8 @@ namespace vrorayashertva
         string click = "";
         Random random = new Random();
         int[] ar = new int[9];
-        Button[] btn = new Button[9];
-        string cross = "Крестики";
-        string circle = "Нолики";
+        Button[] btn = new Button[9]  ;
+        static bool gm = true;
         public MainWindow()
         {
             InitializeComponent();
@@ -100,291 +100,88 @@ namespace vrorayashertva
         
         private void buttonOne_Click_1(object sender, RoutedEventArgs e)
         {
-           
-            if (click == "Крестики")
-            {
-                for (int i = 0; i < btn.Length; i++)
+                    
+                if (click == "Крестики")
                 {
-
-                    if (sender == btn[i])
+                    for (int i = 0; i < btn.Length; i++)
                     {
-                        ((Button)sender).Content = "X";
-                        Xod.Text = "Ходят нолики";
-                        click = "Нолики";
-                        ar[i] = 1;
-                        btn[i].IsEnabled = false;
-                        break;
+
+                        if (sender == btn[i])
+                        {
+                            btn[i].Content = "X";
+                            Xod.Text = "Ходят нолики";
+                            click = "Нолики";
+                            ar[i] = 1;
+                            btn[i].IsEnabled = false;
+                            break;
+                        }
                     }
                 }
-            }
-            else
-            {
-                for (int i = 0; i < btn.Length; i++)
+                else
                 {
-                    if (sender == btn[i])
+                    for (int i = 0; i < btn.Length; i++)
                     {
-                        ((Button)sender).Content = "O";
-                        Xod.Text = "Ходят крестики";
-                        click = "Крестики";
-                        ar[i] = 0;
-                        btn[i].IsEnabled = false;
-                        break;
+                        if (sender == btn[i])
+                        {
+                            btn[i].Content = "O";
+                            Xod.Text = "Ходят крестики";
+                            click = "Крестики";
+                            ar[i] = 0;
+                            btn[i].IsEnabled = false;
+                            break;
+                        }
                     }
+
                 }
-
-            }
-            //проверка на выигрыши крестики
-           /* for (int i = 0; i < btn.Length; i++)
-            {
-                if (i == btn.Length - 1)
-                {
-                    Xod.Text = "Ничья";
-                }
-            }*/
-
-            if (ar[0] == 0 && ar[1] == 0 && ar[2] == 0)
-            {
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + circle;
-                click = cross;
-                for (int i = 0; i < btn.Length; i++)
-                {
-
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[0] == 0 && ar[3] == 0 && ar[6] == 0)
-            {
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + circle;
-
-                click = cross;
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[0] == 0 && ar[4] == 0 && ar[8] == 0)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + circle;
-
-                click = cross;
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[1] == 0 && ar[4] == 0 && ar[7] == 0)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + circle;
-
-                click = cross;
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[2] == 0 && ar[5] == 0 && ar[8] == 0)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + circle;
-
-               click = cross;
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[2] == 0 && ar[4] == 0 && ar[7] == 0)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + circle;
-
-                click = cross;
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[3] == 0 && ar[4] == 0 && ar[5] == 0)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + circle;
-
-                click = cross;
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[6] == 0 && ar[7] == 0 && ar[8] == 0)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + circle;
-
-                click = cross;
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-                 
-            if (ar[0] == 1 && ar[1] == 1 && ar[2] == 1)
-            {
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + cross;
-                click = "Нолики";
-                for (int i = 0; i < btn.Length; i++)
-                {
-
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[0] == 1 && ar[3] == 1 && ar[6] == 1)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + cross;
-
-                click = "Нолики";
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[0] == 1 && ar[4] == 1 && ar[8] == 1)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + cross;
-
-                click = "Нолики";
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[1] == 1 && ar[4] == 1 && ar[7] == 1)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + cross;
-
-                click = "Нолики";
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[2] == 1 && ar[5] == 1 && ar[8] == 1)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + cross;
-
-                click = "Нолики";
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[2] == 1 && ar[4] == 1 && ar[7] == 1)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + cross;
-
-                click = "Нолики";
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[3] == 1 && ar[4] == 1 && ar[5] == 1)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + cross;
-
-                click = "Нолики";
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
-            else if (ar[6] == 1 && ar[7] == 1 && ar[8] == 1)
-            {
-
-
-                Start.IsEnabled = true;
-                Xod.Text = "Выиграли" + cross;
-
-                click = "Нолики";
-                for (int i = 0; i < btn.Length; i++)
-                {
-                    ar[i] = 123;
-                    btn[i].IsEnabled = false;
-                }
-
-            }
+                if (gm) { Bot(); }
             
+                else { gm = false; }
+            Win();
+
+
+        }  
+        
+        private void Win()
+        {
+            string win = "";
+            if(Xod.Text == "Ходят нолики") { win = "крестики"; }
+            else if (Xod.Text == "Ходят крестики") { win = "нолики"; }
+            if (buttonOne.Content == buttonTwo.Content && buttonThree.Content == buttonTwo && buttonOne.Content == buttonThree.Content && (string)buttonOne.Content != "" ) { Xod.Text = "Победили -" + win ; }
+            else if (buttonOne.Content == buttonFour.Content && buttonSeven.Content == buttonFour.Content && buttonOne.Content == buttonSeven.Content && (string)buttonOne.Content != "") { Xod.Text = "Победили -" + win; }
+            else if (buttonOne.Content == buttonFive.Content && buttonNine.Content == buttonFive.Content && buttonOne.Content == buttonNine.Content && (string)buttonOne.Content != "") { Xod.Text = "Победили -" + win; }
+            else if (buttonTwo.Content == buttonFive.Content && buttonFive.Content == buttonEight.Content && buttonTwo.Content == buttonEight.Content && (string)buttonTwo.Content != "") { Xod.Text = "Победили - " + win; }
+            else if (buttonThree.Content == buttonSix.Content && buttonSix.Content == buttonNine.Content && buttonThree.Content == buttonNine.Content && (string)buttonThree.Content != "") { Xod.Text = "Победили - " + win; }
+            else if (buttonThree.Content == buttonFive.Content && buttonFive.Content == buttonSeven.Content && buttonThree.Content == buttonSeven.Content && (string)buttonThree.Content != "") { Xod.Text = "Победили -" + win; }
+            else if (buttonFour.Content == buttonFive.Content && buttonFive.Content == buttonSix.Content && buttonFour.Content == buttonSix.Content && (string)buttonFour.Content != "") { Xod.Text = "Победили - " + win; }
+            else if (buttonSeven.Content == buttonEight.Content && buttonEight.Content == buttonNine.Content && buttonSeven.Content == buttonNine.Content && (string)buttonSeven.Content != "") { Xod.Text = "Победили - " + win; }
+            else { Xod.Text = "Ничья"; }
+            for (int i = 0; i < btn.Length; i++)
+            {
+                ar[i] = 123;
+                btn[i].IsEnabled = false;
+            }
+        }
+        private void Bot()
+        {
+            Random random = new Random();
+            string xd = "";
+            if (click == "Крестики") { xd = "X"; }
+            else { xd = "O"; }
+            for (int i = 0; i < btn.Length; i++)
+            {
+                if (btn[i].IsEnabled && (string)btn[i].Content == "")
+                {
+                    random.Next(i);
+                    btn[i].Content = xd;
+                    btn[i].IsEnabled = false;
+                    break;
+                }
+            }
 
         }
-
     }
+
+    
 }
 
 
